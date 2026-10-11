@@ -1,0 +1,14 @@
+# Environment / secrets
+.env
+**/.env
+
+# DuckDB database files
+*.duckdb
+*.duckdb.wal
+*.wal
+
+# OS / editor temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
