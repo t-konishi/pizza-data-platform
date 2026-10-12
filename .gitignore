@@ -12,3 +12,8 @@
 Thumbs.db
 *.swp
 *.swo
+
+# dbt generated files
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/

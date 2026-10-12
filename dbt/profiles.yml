@@ -1,0 +1,24 @@
+pizza_data_platform:
+  target: dev
+
+  outputs:
+    dev:
+      type: duckdb
+      path: /workspace/duckdb/analytics.duckdb
+      schema: analytics
+      threads: 4
+
+      extensions:
+        - httpfs
+        - parquet
+
+      secrets:
+        - type: s3
+          provider: config
+          key_id: "{{ env_var('S3_ACCESS_KEY_ID') }}"
+          secret: "{{ env_var('S3_SECRET_ACCESS_KEY') }}"
+          region: "{{ env_var('S3_REGION') }}"
+          endpoint: "{{ env_var('S3_ENDPOINT') }}"
+          use_ssl: false
+          url_style: path
+          scope: "s3://pizza-lake"

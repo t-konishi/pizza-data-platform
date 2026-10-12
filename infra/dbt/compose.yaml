@@ -1,0 +1,31 @@
+services:
+  dbt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DBT_CORE_VERSION: "1.12.5"
+        DBT_DUCKDB_VERSION: "1.11.0"
+
+    image: pizza-dbt:1.11.0
+
+    working_dir: /workspace/dbt
+
+    env_file:
+      - ../seaweedfs/.env
+
+    environment:
+      DBT_PROFILES_DIR: /workspace/dbt
+      S3_ENDPOINT: pizza-seaweedfs:8333
+      S3_REGION: us-east-1
+
+    volumes:
+      - ../../dbt:/workspace/dbt
+      - ../../duckdb:/workspace/duckdb
+
+    networks:
+      - pizza-data-net
+
+networks:
+  pizza-data-net:
+    external: true
