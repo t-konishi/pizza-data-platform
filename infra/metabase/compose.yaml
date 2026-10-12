@@ -1,0 +1,21 @@
+services:
+  metabase:
+    image: ghcr.io/motherduckdb/metabase-duckdb:sha-7b4bd93
+    container_name: pizza-metabase
+
+    ports:
+      - "127.0.0.1:3000:3000"
+
+    environment:
+      JAVA_OPTS: "-Xms256m -Xmx1024m"
+      MB_DB_TYPE: h2
+      MB_DB_FILE: /home/metabase/data/metabase.db
+
+    volumes:
+      - metabase-data:/home/metabase/data
+      - ../../duckdb/bi:/bi:ro
+
+    mem_limit: 2g
+
+volumes:
+  metabase-data:
