@@ -12,3 +12,4 @@ from read_parquet(
     's3://pizza-lake/raw/oracle/PIZZA/PAYMENTS/*.parquet',
     union_by_name = true
 )
+where _airbyte_generation_id = {{ var('airbyte_generation_id') }}

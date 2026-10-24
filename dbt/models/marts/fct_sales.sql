@@ -4,7 +4,11 @@ select
     o.customer_id,
     oi.pizza_id,
 
-    cast(o.ordered_at as date) as order_date,
+-- ORDERED_ATはUTCで格納されている前提で、注文日をJSTに変換
+cast(
+    (o.ordered_at AT TIME ZONE 'UTC') AT TIME ZONE 'Asia/Tokyo'
+    as date
+) as order_date,
     o.ordered_at,
     o.order_status,
     o.order_channel,

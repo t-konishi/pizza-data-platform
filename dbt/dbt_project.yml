@@ -19,3 +19,6 @@ models:
     marts:
       +materialized: table
       +schema: marts
+
+vars:
+  airbyte_generation_id: 3
