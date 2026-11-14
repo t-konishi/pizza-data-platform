@@ -17,3 +17,10 @@ Thumbs.db
 dbt/target/
 dbt/logs/
 dbt/dbt_packages/
+
+# Local dbt user settings
+dbt/.user.yml
+
+# Local data and backup files
+*.parquet
+*.tar.gz
